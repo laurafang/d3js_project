@@ -2,15 +2,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+    <head>
 		<meta charset="utf-8">
         <script src="d3.min.js"></script>
        	<link rel="stylesheet" type="text/css" href="stylesheet.css">
         <title>Laura Fang D3 Project</title>
-  </head>
- <body>
-   <h1>Population Analysis of United States</h1>
-     <h3>In this project, the dataset is from census.gov, about different population in each states for giving people the basic idea of U.S. population. </h3>
+     </head>
+
+    <body>
+        <h1>Population Analysis of United States</h1>
+     	<h3>In this project, the dataset is from census.gov, about different population in each states for giving people the basic idea of U.S. population. </h3>
      <div id="map">
      <script type="text/javascript">		
 			
@@ -34,12 +35,32 @@
 				.range(['#f7e1e1', '#ff4444'])
 				.domain([0,800]);
 					
-		
+		    // append map to the SVG you created
 			var svg = 
 				d3.select("body")
 				.append("svg")
 				.attr("width", width)
 				.attr("height", height);
+            
+            // push data
+			d3.csv("DATA/states.csv", function(data) {			
+				
+				d3.json("us-states.json", function(json) {			
+					
+					for (var i = 0; i < data.length; i++) {
+						
+						var dataState = data[i].STA;					
+						
+						var dataValue = +data[i].P2016;
+
+						for (var j = 0; j < json.features.length; j++)  {
+							var jsonState = json.features[j].properties.abbr;
+							if (dataState == jsonState) {
+								json.features[j].properties.count = dataValue; 
+								break;
+							}
+						}
+					}
 			</script>	
      </div>
   </body>
