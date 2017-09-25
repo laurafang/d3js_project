@@ -81,7 +81,7 @@
 							div.transition()
 							.duration(200)
 							.style("opacity", 1.0);
-							div.html("State: " + d.properties.abbr + "<br/># of Univ: " + d.properties.count)
+							div.html("State: " + d.properties.abbr + "<br/>Population of this states: " + d.properties.count)
 							.style("left", (d3.event.pageX) + "px")
 							.style("top", (d3.event.pageY - 28) + "px");
 						})
@@ -101,11 +101,11 @@
 					
 					linearGradient.append("stop") 
 						.attr("offset", "0%")   
-						.attr("stop-color", "#EBF6C9"); 
+						.attr("stop-color", "#f7e1e1"); 
 
 					linearGradient.append("stop") 
 						.attr("offset", "100%")   
-						.attr("stop-color", "#228B66"); //end point color
+						.attr("stop-color", "#ff4444"); //end point color
 					
 					// refer: Modified Legend Code from Mike Bostock: http://bl.ocks.org/mbostock/3888852
 					var legend = svg.append("g")
@@ -114,8 +114,8 @@
 					//Legend
 					legend.append("text")
 						  .attr("x", 30)
-						  .attr("dy", ".35em")
-						  .text("Number of Universities");
+						  .attr("dy", ".45em")
+						  .text("Population");
 						  
 					legend.append("rect")
 	  					  .attr("x", 0)
